@@ -34,9 +34,10 @@ const columns: Column<RandomUserResponse['results'][number]>[] = [
 
 function UserTable() {
 	const [currentPaginateState, setCurrentPaginateState] = useAtom(paginationState);
-	const [paginateUsers, setPaginateUsers] = useAtom(usersPaginatedStore);
+	// const [paginateUsers, setPaginateUsers] = useAtom(usersPaginatedStore);
 
-	const [currentPage, setCurrentPage] = useState<number>(1)
+	// cached data of current page index
+	const [currentPage, setCurrentPage] = useState<number>(1);
 	const {users, fetchUsers} = useUserData();
 	const [currentDataResults, setCurrentDataResults] = useState<RandomUserResponse['results']>([]);
 	const [currentDataInfo, setCurrentDataInfo] = useState<RandomUserResponse['info'] | null>(null);
