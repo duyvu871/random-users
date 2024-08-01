@@ -22,6 +22,11 @@ This project leverages [Next.js](https://nextjs.org/) for a seamless development
    REDIS_PORT=6379
    REDIS_PASSWORD=your-redis-password 
    REDIS_USERNAME=default
+   
+   KV_URL="redis://******:******@zxcvbnm.upstash.io:6379"
+   KV_REST_API_URL="https://zxcvbnm.upstash.io"
+   KV_REST_API_TOKEN="********"
+   KV_REST_API_READ_ONLY_TOKEN="********"
    ```
 
 3. **Start the Development Server:**
