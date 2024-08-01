@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={cn(inter.className, "bg-slate-50")}>
+      <body className={cn(inter.className, "bg-slate-50 h-svh w-screen flex justify-center items-center")}>
         <JotaiProvider>
           {children}
         </JotaiProvider>

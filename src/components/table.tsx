@@ -79,7 +79,7 @@ const Table: FC<TableProps<RandomUserResponse['results'][number]>> = ({ columns,
 	}, [data]);
 
 	return (
-		<div className="relative overflow-x-auto shadow-md sm:rounded-lg">
+		<div className="relative overflow-x-auto shadow-md sm:rounded-lg max-w-full">
 			<table className={"flex-grow w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 rounded-xl shadow-lg"}>
 			<thead className="text-xs text-gray-700 uppercase bg-gray-100 dark:bg-gray-700 dark:text-gray-400">
 				<tr>
@@ -107,7 +107,7 @@ const Table: FC<TableProps<RandomUserResponse['results'][number]>> = ({ columns,
 							<td
 								key={generateId()}
 								className={cn(
-									"px-6 py-2",
+									"px-2 sm:px-6 py-2",
 									{
 										"flex justify-center": column.type === "image",
 									}

@@ -12,7 +12,7 @@ export const paginationState = atom<PaginationState>({
 	currentPage: 1,
 	pageSize: 10,
 	totalCount: 100,
-	siblingCount: 2,
+	siblingCount: 1,
 });
 
 export const isLoadingNewPage = atom<boolean>(false);
