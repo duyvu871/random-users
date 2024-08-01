@@ -1,6 +1,6 @@
 import React, { useEffect, useLayoutEffect, useState, Suspense } from 'react';
 import { useAtom } from 'jotai/index';
-import { paginationState } from '@/states/pagination';
+import { isLoadingNewPage, paginationState } from '@/states/pagination';
 import { useUserData } from '@/hooks/useUserData';
 import { RandomUserResponse } from 'BAD/api';
 import Table, { Column } from '@/components/table';
@@ -34,7 +34,7 @@ const columns: Column<RandomUserResponse['results'][number]>[] = [
 
 function UserTable() {
 	const [currentPaginateState, setCurrentPaginateState] = useAtom(paginationState);
-	// const [paginateUsers, setPaginateUsers] = useAtom(usersPaginatedStore);
+	const [isLoading, setIsLoading] = useAtom(isLoadingNewPage);
 
 	// cached data of current page index
 	const [currentPage, setCurrentPage] = useState<number>(1);
@@ -43,7 +43,11 @@ function UserTable() {
 	const [currentDataInfo, setCurrentDataInfo] = useState<RandomUserResponse['info'] | null>(null);
 
 	const getUsers = async (page: number) => {
-		const data = await fetchUsers({ page, results: 10 });
+		setIsLoading(true);
+		const data = await fetchUsers({ page, results: 10 }).then((res) => {
+			setIsLoading(false);
+			return res;
+		});
 		setCurrentDataResults(data.results);
 		setCurrentDataInfo(data.info);
 	}
@@ -64,10 +68,12 @@ function UserTable() {
 
 	return (
 		<Suspense fallback={<RotateLoader />}>
-			{currentDataResults.length === 0
-				? <RotateLoader />
-				: <Table data={currentDataResults} columns={columns}/>
-			}
+			<div className={"flex-grow flex justify-center items-center"}>
+				{(currentDataResults.length === 0 || isLoading)
+					? <RotateLoader />
+					: <Table data={currentDataResults} columns={columns}/>
+				}
+			</div>
 		</Suspense>
 	);
 }

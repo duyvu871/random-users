@@ -3,7 +3,9 @@ import './rotate-loader.css';
 
 function RotateLoader() {
 	return (
-		<div className="spinner"></div>
+		<div className={"flex-grow flex justify-center items-center"}>
+			<div className="spinner"></div>
+		</div>
 	);
 }
 
